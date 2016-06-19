@@ -52,4 +52,12 @@ class ArrayList
     @size == 0
   end
 
+  def sort
+    @storage.sort!  
+  end
+
+  def reverse
+    @storage.reverse!
+  end
+
 end

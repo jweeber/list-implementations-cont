@@ -19,20 +19,21 @@ class LinkedList
    end
 
    def add(value)
-       if @size == 0
-         @head = Node.new(value,nil)
-         @size += 1
-       end
-       # Traverse to the end of the list
-       # And insert a new node over there with the specified value
-       current = @head
-       while current.next_node != nil
-           current = current.next_node
-       end
-       current.next_node = Node.new(value,nil)
+    if @size == 0
+       @head = Node.new(value,nil)
        @size += 1
-       self
+    else
+     # Traverse to the end of the list
+     # And insert a new node over there with the specified value
+     current = @head
+     while current.next_node != nil
+         current = current.next_node
+     end
+     current.next_node = Node.new(value,nil)
+     @size += 1
    end
+     self
+  end
 
    def delete(val)
        return nil if @size == 0
@@ -96,4 +97,58 @@ class LinkedList
      return max
    end
 
+   # write a method for reverse
+
+  def reverse
+    current = @head
+    current_index = @size - 1
+    full_list = []
+    while current != nil
+      full_list.insert(current_index, current.value)
+      current_index -= 1
+      current = current.next_node
+    end
+    # not sure how to do this without auxillary storage.
+    return full_list.join("=>") 
+  end
+
+  def sort
+    # None of this works one bit, and I've spent too much time getting no where.
+    # So here is a mess of things I've tried.
+
+    # traverse through multiple times, move nodes to the end
+    #  use size to figure out how many times to go through, next time go through one less time
+    # get head and assign to current
+    # get next node
+    # if current is > next node, swap them
+    # previous = @head # 10
+    # current = @head.next_node # 2
+    # size = @size
+    # # full_list = []
+    # while current != nil 
+    #   size.times do |num|
+    #       if previous.value > current.value
+    #         current = previous # current = 10
+    #         # previous = current # previous = 2
+    #       else
+    #       end
+    #       puts previous.value # 2
+    #       puts current.value
+    #       current = current.next_node
+    #     end
+    # end
+    # return full_list
+  end
 end
+
+new_list = LinkedList.new
+new_list.add(10)
+new_list.add(2)
+new_list.add(33)
+new_list.add(50)
+new_list.add(4)
+puts new_list.sort
+
+puts new_list.reverse
+
+
